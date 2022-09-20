@@ -61,8 +61,18 @@ if [ $PWD != $HOME ]
 fi
 
 
-# Start checking of week2 tutorial
-echo -e "\033[1mCHECKING YOUR WORK:\033[0m"
+# System information gathering
+echo "OPS705 Lab 2.2 Check Script"
+echo
+echo "SYSTEM INFORMATION:"
+echo "------------------------------------"
+hostnamectl
+echo -n "              Date: "
+date
+echo
+
+# Start checking of Lab 2, Investigation 1, Part 2 tutorial
+echo -e "\033[1mCHECKING YOUR LAB 2, INVESTIGATION 1.2 WORK:\033[0m"
 echo
 
 # Check directory uli101xx/notes created in home directory
