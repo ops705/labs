@@ -92,7 +92,7 @@ check "test -d $HOME/uli101xx/samples" "The directory pathname \"$HOME/uli101xx/
 echo
 echo "Congratulations!"
 echo
-echo  "You have passed the week2-check-1 script"
+echo  "You have passed the Investigation 1: Part 1 script"
 echo  "This means that your directory structure has been properly created :)"
 echo
 echo  "You can proceed with this tutorial."
