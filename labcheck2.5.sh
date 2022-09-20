@@ -60,8 +60,18 @@ then
 fi
 
 
-# Start checking week3 tutorial
-echo -e "\033[1mCHECKING YOUR WORK:\033[0m"
+# System information gathering
+echo "OPS705 Lab 2.5 Check Script"
+echo
+echo "SYSTEM INFORMATION:"
+echo "------------------------------------"
+hostnamectl
+echo -n "              Date: "
+date
+echo
+
+# Start checking of Lab 2, Investigation 2, Part 4 tutorial
+echo -e "\033[1mCHECKING YOUR LAB 2, INVESTIGATION 2.4 WORK:\033[0m"
 echo
 
 # Check your home directory contains file called ls
