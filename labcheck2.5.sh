@@ -41,7 +41,7 @@ set -o history
 
 clear  # Clear the screen
 
- Make certain user is in the home directory
+# Make certain user is in the home directory
 
 if [ $PWD != $HOME ]
 then
