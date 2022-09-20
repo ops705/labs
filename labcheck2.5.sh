@@ -79,8 +79,7 @@ check "test -f $HOME/tutorial3/practice/examples/ls.bk" "The regular file pathna
 echo
 echo "Congratulations!"
 echo
-echo  "You have passed the week3-check-2 script"
-echo  "This means that you have properly performed text file management :)"
+echo  "You have passed the Investigation 2: Parts 4 script"
 echo
 echo  "You can proceed with this tutorial."
 echo

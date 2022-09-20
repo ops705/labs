@@ -104,7 +104,7 @@ check "test -d $HOME/xyz100xx/uli101xx/tutorials/acp100xx" "The directory pathna
 echo
 echo "Congratulations!"
 echo
-echo  "You have passed the week2-check-2 script"
+echo  "You have passed the Investigation 1: Part 2 script"
 echo  "This means that you have properly managed your directories :)"
 echo
 echo  "You can proceed with this tutorial."

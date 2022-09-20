@@ -104,7 +104,7 @@ check "! test -d $HOME/xyz100xx/uli101xx/tutorials/acp100xx" "The directory path
 echo
 echo "Congratulations!"
 echo
-echo  "You have passed the week2-check-3 script"
+echo  "You have passed the Investigation 1: Part 3 script"
 echo  "This means that your directory structure has been correctly removed :)"
 echo
 echo  "You can proceed with this tutorial."

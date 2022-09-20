@@ -96,7 +96,7 @@ check "test -d $HOME/tutorial3/notes/lesson2" "The directory pathname \"$HOME/tu
 echo
 echo "Congratulations!"
 echo
-echo  "You have passed the week3-check-1 script"
+echo  "You have passed the Investigation 2: Parts 1-3 script"
 echo
 echo  "You can proceed with this tutorial."
 echo
