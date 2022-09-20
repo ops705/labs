@@ -68,6 +68,7 @@ echo "------------------------------------"
 hostnamectl
 echo -n "              Date: "
 date
+echo
 
 # Start checking of Lab 2, Investigation 1, Part 1 tutorial
 echo -e "\033[1mCHECKING YOUR LAB 2, INVESTIGATION 1.1 WORK:\033[0m"
