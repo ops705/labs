@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# labcheck2.5.sh
+# labcheck3.5.sh
 
 # Author:  Murray Saul
 # Date:    January 15, 2020
 # Modified by:	Chris Johnson
-# Modified:	September 20, 2022
+# Modified:	January 8, 2023
 #
 # Purpose: Check that user correctly issued some Linux file management
 #          commands. This shell script will exit if errors,
@@ -61,7 +61,7 @@ fi
 
 
 # System information gathering
-echo "OPS705 Lab 2.5 Check Script"
+echo "OPS705 Lab 3.5 Check Script"
 echo
 echo "SYSTEM INFORMATION:"
 echo "------------------------------------"
@@ -70,8 +70,8 @@ echo -n "              Date: "
 date
 echo
 
-# Start checking of Lab 2, Investigation 2, Part 4 tutorial
-echo -e "\033[1mCHECKING YOUR LAB 2, INVESTIGATION 2.4 WORK:\033[0m"
+# Start checking of Lab 3, Investigation 2, Part 4 tutorial
+echo -e "\033[1mCHECKING YOUR LAB 3, INVESTIGATION 2.4 WORK:\033[0m"
 echo
 
 # Check your home directory contains file called ls

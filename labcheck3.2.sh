@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# labcheck2.2.sh
+# labcheck3.2.sh
 
 # Author:  Murray Saul
 # Date:    January 8, 2020
 # Modified by:	Chris Johnson
-# Modified:	September 20, 2022
+# Modified:	January 8, 2023
 #
 # Purpose: Check that user correctly manipulated the specified directory
 #          structure. This shell script will exit if errors,
@@ -62,7 +62,7 @@ fi
 
 
 # System information gathering
-echo "OPS705 Lab 2.2 Check Script"
+echo "OPS705 Lab 3.2 Check Script"
 echo
 echo "SYSTEM INFORMATION:"
 echo "------------------------------------"
@@ -71,8 +71,8 @@ echo -n "              Date: "
 date
 echo
 
-# Start checking of Lab 2, Investigation 1, Part 2 tutorial
-echo -e "\033[1mCHECKING YOUR LAB 2, INVESTIGATION 1.2 WORK:\033[0m"
+# Start checking of Lab 3, Investigation 1, Part 2 tutorial
+echo -e "\033[1mCHECKING YOUR LAB 3, INVESTIGATION 1.2 WORK:\033[0m"
 echo
 
 # Check directory uli101xx/notes created in home directory
