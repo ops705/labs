@@ -2,8 +2,8 @@
 
 # ./labcheck2.sh
 
-# Author:  Chris Johnson <chris.johnson@senecacollege.ca>
-# Date:    Jan 18, 2023
+# Author:  Chris Johnson <chris.johnson@senecapolytechnic.ca>
+# Date:    Sep 16, 2024
 #
 # Purpose: Check that students correctly completed Lab 2.
 #          Script will not exit if errors are detected,
@@ -24,32 +24,50 @@ run_header () {
 	echo "----------------------------------------------"
 }
 
-yum_update () {
-	echo -n "System updated: "
-	if [[ $(yum check-update &> /dev/null; echo $?) == 0 ]]; then
+apt_update () {
+#!/bin/bash
+
+echo -n "System up to date: "
+
+# Capture the output of apt update and apt upgrade -s
+apt_update_output=$(sudo apt update 2> /dev/null)
+apt_upgrade_output=$(sudo apt upgrade -s 2> /dev/null)
+
+# Check for available updates and phased updates
+if [[ $(echo "$apt_update_output" | grep -q "Run 'apt list --upgradable' to see them.") && $(echo "$apt_upgrade_output" | grep -q "The following upgrades have been deferred due to phasing:") ]]; then
+    echo -e "\e[0;32m[PASSED]\e[m"  # No non-phased updates available
+elif [[ $(echo "$apt_update_output" | grep -q "Run 'apt list --upgradable' to see them.") ]]; then
+    echo -e "\e[0;31m[FAILED]\e[m"  # Updates available
+else
+    echo -e "\e[0;32m[PASSED]\e[m"  # No updates are available
+fi
+}
+
+firewall_services () {
+
+	echo -n "ufw Service Inactive: "
+	if [[ $(systemctl is-active iptables 2> /dev/null) == "inactive" ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
-}
 
-firewall_services () {
-	echo -n "Firewalld removed: "
-	if ! $(rpm -q firewalld &> /dev/null); then
+	echo -n "ufw Service Enabled: "
+	if [[ $(systemctl is-enabled iptables 2> /dev/null) == "disabled" ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
 	echo -n "iptables Service Active: "
-	if [[ $(systemctl is-active iptables 2> /dev/null) == "active" ]]; then
+	if [[ $(systemctl is-active netfilter-persistent 2> /dev/null) == "active" ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
 	echo -n "iptables Service Enabled: "
-	if [[ $(systemctl is-enabled iptables 2> /dev/null) == "enabled" ]]; then
+	if [[ $(systemctl is-enabled netfilter-persistent 2> /dev/null) == "enabled" ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
@@ -74,13 +92,6 @@ firewall_configuration () {
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
-	echo -n "INPUT - REJECT Rule Removed: "
-	if $(sudo iptables -C INPUT -p all -j REJECT 2> /dev/null ); then
-		echo -e "\e[0;31m[FAILED]\e[m"
-	else
-		echo -e "\e[0;32m[PASSED]\e[m"
-	fi
-
 	echo -n "INPUT - SSH on port 22222: "
 	if $(sudo iptables -C INPUT -m state --state NEW -p tcp --dport 22222 -j ACCEPT 2> /dev/null ); then
 		echo -e "\e[0;32m[PASSED]\e[m"
@@ -99,13 +110,6 @@ firewall_configuration () {
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
-	echo -n "FORWARD - REJECT Rule Removed: "
-	if $(sudo iptables -C FORWARD -p all -j REJECT 2> /dev/null ); then
-		echo -e "\e[0;31m[FAILED]\e[m"
-	else
-		echo -e "\e[0;32m[PASSED]\e[m"
-	fi
-
 	echo -n "FORWARD DEFAULT - DROP: "
 	if $(sudo iptables -L | grep "FORWARD" | grep "DROP" &> /dev/null) ; then 
 		echo -e "\e[0;32m[PASSED]\e[m"
@@ -120,14 +124,14 @@ authorized_keys () {
 	echo "-------------------------------"
 
 	echo -n "Public key generated: "
-	if [[ -f ~/.ssh/id_rsa.pub ]]; then
+	if [[ -f ~/.ssh/id_*.pub ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
 	echo -n "Private key generated: "
-	if [[ -f ~/.ssh/id_rsa ]]; then
+	if [[ -f ~/.ssh/id_* ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
@@ -212,7 +216,7 @@ end_message () {
 }
 
 run_header
-yum_update
+apt_update
 firewall_services
 firewall_configuration
 authorized_keys
