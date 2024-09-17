@@ -46,14 +46,14 @@ fi
 firewall_services () {
 
 	echo -n "ufw Service Inactive: "
-	if [[ $(systemctl is-active iptables 2> /dev/null) == "inactive" ]]; then
+	if [[ $(systemctl is-active ufw 2> /dev/null) == "inactive" ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
 	echo -n "ufw Service Enabled: "
-	if [[ $(systemctl is-enabled iptables 2> /dev/null) == "disabled" ]]; then
+	if [[ $(systemctl is-enabled ufw 2> /dev/null) == "disabled" ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
@@ -124,14 +124,14 @@ authorized_keys () {
 	echo "-------------------------------"
 
 	echo -n "Public key generated: "
-	if [[ -f ~/.ssh/id_*.pub ]]; then
+	if [[ -f ~/.ssh/id_ed25519.pub ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
 	echo -n "Private key generated: "
-	if [[ -f ~/.ssh/id_* ]]; then
+	if [[ -f ~/.ssh/id_ed25519 ]]; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED]\e[m"
@@ -140,7 +140,7 @@ authorized_keys () {
 	echo -n "Your public key installed in ~/.ssh/authorized_keys: "
 	if [[ ! -f ~/.ssh/authorized_keys ]]; then
 		echo -e "\e[0;31m[FAILED] (File doesn't exist.)\e[m"
-	elif [[ $(grep -f ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys 2> /dev/null) ]] ; then
+	elif [[ $(grep -f ~/.ssh/id_ed25519.pub ~/.ssh/authorized_keys 2> /dev/null) ]] ; then
 		echo -e "\e[0;32m[PASSED]\e[m"
 	else
 		echo -e "\e[0;31m[FAILED] (Key not found in file.)\e[m"
