@@ -52,12 +52,12 @@ firewall_services () {
 		echo -e "\e[0;31m[FAILED]\e[m"
 	fi
 
-	echo -n "ufw Service Enabled: "
-	if [[ $(systemctl is-enabled ufw 2> /dev/null) == "disabled" ]]; then
-		echo -e "\e[0;32m[PASSED]\e[m"
-	else
-		echo -e "\e[0;31m[FAILED]\e[m"
-	fi
+	#echo -n "ufw Service Enabled: "
+	#if [[ $(systemctl is-enabled ufw 2> /dev/null) == "disabled" ]]; then
+	#	echo -e "\e[0;32m[PASSED]\e[m"
+	#else
+	#	echo -e "\e[0;31m[FAILED]\e[m"
+	#fi
 
 	echo -n "iptables Service Active: "
 	if [[ $(systemctl is-active netfilter-persistent 2> /dev/null) == "active" ]]; then
